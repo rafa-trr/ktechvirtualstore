@@ -14,7 +14,7 @@ namespace KTech.VirtualStore.Web.HtmlHelpers
         {
             StringBuilder resultado = new StringBuilder();
 
-            for (int i = 1; i < paginacao.TotalPaginas; i++)
+            for (int i = 1; i <= paginacao.TotalPaginas; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
                 tag.MergeAttribute("href", paginaUrl(i));
