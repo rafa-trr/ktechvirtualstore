@@ -14,13 +14,14 @@ namespace KTech.VirtualStore.Web.Controllers
         public int ProdutosPorPagina = 5;
 
         // GET: Vitrine
-        public ViewResult ListaProdutos(int pagina = 1)
+        public ViewResult ListaProdutos(string categoria, int pagina = 1)
         {
             _repositorio = new ProdutosRepository();
             ProdutosViewModel model = new ProdutosViewModel
             {
 
                 Produtos = _repositorio.Produtos
+                .Where(p => categoria == null || p.Categoria == categoria)
                 .OrderBy(p => p.Nome)
                 .Skip((pagina - 1) * ProdutosPorPagina)
                 .Take(ProdutosPorPagina),
@@ -29,8 +30,10 @@ namespace KTech.VirtualStore.Web.Controllers
                 {
                     PaginaAtual = pagina,
                     ItensPorPagina = ProdutosPorPagina,
-                    ItensTotal = _repositorio.Produtos.Count()
-                }
+                    ItensTotal = categoria == null ? _repositorio.Produtos.Count() : _repositorio.Produtos.Where(p => categoria == null || p.Categoria == categoria).Count()
+                },
+
+                CategoriaAtual = categoria
             };
 
             return View(model);

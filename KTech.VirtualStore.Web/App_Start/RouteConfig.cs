@@ -13,17 +13,44 @@ namespace KTech.VirtualStore.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // /
+
+            routes.MapRoute(
+                name: null,
+                url: "",
+                defaults: new { Controller = "Vitrine", Action = "ListaProdutos", categoria = (string)null, pagina = 1 }
+                );
+
+            // /Pagina
+
             routes.MapRoute(
                 name: null,
                 url: "Pagina{pagina}",
-                defaults: new { Controller = "Vitrine", Action = "ListaProdutos" }
+                defaults: new { Controller = "Vitrine", Action = "ListaProdutos", categoria = (string)null },
+                constraints: new { pagina = @"\d+" }
                 );
-            
+
+            // /Categoria
+
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Vitrine", action = "ListaProdutos", id = UrlParameter.Optional }
-            );
+                name: null,
+                url: "{categoria}",
+                defaults: new { Controller = "Vitrine", Action = "ListaProdutos", pagina = 1 }
+                );
+
+            // /Categoria/Pagina
+
+            routes.MapRoute(
+                name: null,
+                url: "{categoria}/Pagina{pagina}",
+                defaults: new { Controller = "Vitrine", Action = "ListaProdutos" },
+                constraints: new { pagina = @"\d+" }
+                );
+
+            routes.MapRoute(
+                name: null,
+                url: "{controller}/{action}"
+                );
         }
     }
 }
