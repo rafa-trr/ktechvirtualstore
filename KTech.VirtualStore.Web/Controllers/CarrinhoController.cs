@@ -72,5 +72,10 @@ namespace KTech.VirtualStore.Web.Controllers
 
             return PartialView(carrinho);
         }
+
+        public ViewResult FecharPedido()
+        {
+            return View(new Pedido());
+        }
     }
 }
