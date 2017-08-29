@@ -1,0 +1,11 @@
+﻿@model KTech.VirtualStore.Domain.Entities.Carrinho
+
+<div class="navbar-right">
+    @Html.ActionLink("Checkout", "Index", "Carrinho", new { returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default navbar-btn" })
+</div>
+
+<div class="navbar-text navbar-right">
+    <b>Seu carrinho:</b>
+    @Model.ItensCarrinho.Sum(x => x.Quantidade) item(s), @Model.ObterValorTotal().ToString("c")
+</div>
+
