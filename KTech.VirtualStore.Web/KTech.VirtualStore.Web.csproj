@@ -127,6 +127,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ErroEstilo.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -175,6 +176,7 @@
     <Content Include="Views\Carrinho\Index.cshtml" />
     <Content Include="Views\Carrinho\Resumo.cshtml" />
     <Content Include="Views\Carrinho\FecharPedido.cshtml" />
+    <Content Include="Views\Carrinho\PedidoConcluido.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

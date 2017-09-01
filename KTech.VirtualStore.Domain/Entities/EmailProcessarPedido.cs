@@ -42,10 +42,12 @@ namespace KTech.VirtualStore.Domain.Entities
                 foreach(var item in carrinho.ItensCarrinho)
                 {
                     var subtotal = item.Produto.Preco * item.Quantidade;
-                    sbBody.AppendFormat("{0} x {1} (subtotal: {2:c}", item.Quantidade, item.Produto.Nome, subtotal);
+                    sbBody.AppendFormat("{0} x {1} (subtotal: {2:c})", item.Quantidade, item.Produto.Nome, subtotal);
                 }
 
+                sbBody.AppendLine();
                 sbBody.AppendFormat("Valor total do pedido: {0:c}", carrinho.ObterValorTotal())
+                    .AppendLine()
                     .AppendLine("----------------------")
                     .AppendLine("Enviar para:")
                     .AppendLine(pedido.NomeCliente)
