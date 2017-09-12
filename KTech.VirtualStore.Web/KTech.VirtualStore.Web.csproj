@@ -134,6 +134,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Administrativo\Views\web.config" />
+    <Content Include="Areas\Administrativo\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Shared\_AdministrativoLayout.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Produto\Index.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Produto\Alterar.cshtml" />
+    <Content Include="Areas\Administrativo\Views\Produto\Confirmacao.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -144,11 +150,14 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jQueryFixes.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Administrativo\AdministrativoAreaRegistration.cs" />
+    <Compile Include="Areas\Administrativo\Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\CarrinhoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\VitrineController.cs" />
@@ -186,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administrativo\Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KTech.VirtualStore.Domain\KTech.VirtualStore.Domain.csproj">
