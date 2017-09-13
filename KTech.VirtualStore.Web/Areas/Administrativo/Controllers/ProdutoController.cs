@@ -67,7 +67,7 @@ namespace KTech.VirtualStore.Web.Areas.Administrativo.Controllers
         [HttpPost]
         public JsonResult Excluir(int produtoId)
         {
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
+            //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
 
             string mensagem = string.Empty;
             _repositorio = new ProdutosRepository();

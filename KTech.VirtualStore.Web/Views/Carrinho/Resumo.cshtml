@@ -5,7 +5,7 @@
 </div>
 
 <div class="navbar-text navbar-right">
-    <b>Seu carrinho:</b>
+    <span style="font-size: 14pt" class="glyphicon glyphicon-shopping-cart"></span>
     @Model.ItensCarrinho.Sum(x => x.Quantidade) item(s), @Model.ObterValorTotal().ToString("c")
 </div>
 
