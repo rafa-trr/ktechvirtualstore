@@ -1,13 +1,11 @@
 ﻿using KTech.VirtualStore.Domain.Entities;
 using KTech.VirtualStore.Domain.Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace KTech.VirtualStore.Web.Areas.Administrativo.Controllers
 {
+    [Authorize]
     public class ProdutoController : Controller
     {
         private ProdutosRepository _repositorio;
