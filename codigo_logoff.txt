@@ -1,0 +1,18 @@
+Você cria um controller e coloca e cria uma Action 
+
+public ActionResult Logoff() 
+{ 
+FormsAuthentication.SignOut(); 
+return RedirectToAction("Index", "Home"); 
+} 
+
+E na View 
+
+@if (Request.IsAuthenticated) 
+{ 
+<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"> 
+</i>Olá, @User.Identity.Name<span class="caret"></span></a> 
+
+@Html.ActionLink("Log off", "Logoff", "Autenticacao") 
+
+} 
