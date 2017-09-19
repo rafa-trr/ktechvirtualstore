@@ -31,6 +31,8 @@ namespace KTech.VirtualStore.Domain.Repository
                     prod.Descricao = produto.Descricao;
                     prod.Preco = produto.Preco;
                     prod.Categoria = produto.Categoria;
+                    prod.Imagem = produto.Imagem;
+                    prod.ImagemMimeType = produto.ImagemMimeType;
                 }
             }
 

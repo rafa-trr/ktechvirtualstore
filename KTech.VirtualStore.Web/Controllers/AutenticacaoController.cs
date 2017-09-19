@@ -42,8 +42,8 @@ namespace KTech.VirtualStore.Web.Controllers
                         if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                             && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                             return Redirect(returnUrl);
-                        else
-                            return Redirect("/Administrativo/Produto/Index");
+                        
+                        return RedirectToAction("Index", "Produto", new { area = "Administrativo" });
                     }
                 }
                 else

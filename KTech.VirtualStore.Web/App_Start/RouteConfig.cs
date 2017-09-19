@@ -47,6 +47,10 @@ namespace KTech.VirtualStore.Web
                 constraints: new { pagina = @"\d+" }
                 );
 
+            
+
+            
+
             routes.MapRoute(
                 name: null,
                 url: "{controller}/{action}"

@@ -15,7 +15,7 @@ namespace KTech.VirtualStore.Web.Controllers
         private ProdutosRepository _repositorio;
 
         // GET: Carrinho
-        public RedirectToRouteResult Adicionar(int produtoId, string returnUrl)
+        public RedirectToRouteResult Adicionar(Carrinho carrinho, int produtoId, string returnUrl)
         {
             _repositorio = new ProdutosRepository();
 
@@ -34,7 +34,7 @@ namespace KTech.VirtualStore.Web.Controllers
         {
             Carrinho carrinho = (Carrinho)Session["Carrinho"];
 
-            if(carrinho == null)
+            if (carrinho == null)
             {
                 carrinho = new Carrinho();
                 Session["Carrinho"] = carrinho;

@@ -1,6 +1,8 @@
 ﻿using KTech.VirtualStore.Domain.Entities;
 using KTech.VirtualStore.Domain.Repository;
+using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace KTech.VirtualStore.Web.Areas.Administrativo.Controllers
@@ -28,10 +30,17 @@ namespace KTech.VirtualStore.Web.Areas.Administrativo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Alterar(Produto produto)
+        public ActionResult Alterar(Produto produto, HttpPostedFileBase image = null)
         {
             if(ModelState.IsValid)
             {
+                if(image != null)
+                {
+                    produto.ImagemMimeType = image.ContentType;
+                    produto.Imagem = new byte[image.ContentLength];
+                    image.InputStream.Read(produto.Imagem, 0, image.ContentLength);
+                }
+
                 _repositorio = new ProdutosRepository();
                 _repositorio.Salvar(produto);
 
@@ -78,6 +87,19 @@ namespace KTech.VirtualStore.Web.Areas.Administrativo.Controllers
             }
 
             return Json(mensagem, JsonRequestBehavior.AllowGet);
+        }
+
+        public FileContentResult ObterImagem(int produtoId)
+        {
+            _repositorio = new ProdutosRepository();
+            Produto prod = _repositorio.Produtos
+                .FirstOrDefault(p => p.ProdutoId == produtoId);
+
+            if (prod != null)
+            {
+                return File(prod.Imagem, prod.ImagemMimeType);
+            }
+            return null;
         }
     }
 }

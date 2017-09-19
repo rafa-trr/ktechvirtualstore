@@ -1,6 +1,14 @@
 ﻿@model KTech.VirtualStore.Domain.Entities.Produto
 
 <div class="well">
+
+    @if(Model.Imagem != null)
+    {
+        <div class="pull-left" style="margin-right: 10px">
+            <img class="img-thumbnail" style="width:120px;height:120px;" src="@Url.Action("ObterImagem", "Produto", new { area = "Administrativo", Model.ProdutoId })" />
+        </div>
+    }
+
     <h3><strong>@Model.Nome</strong></h3>
     <h3><span class="pull-right label label-primary">@Model.Preco.ToString("c")</span></h3>
 
