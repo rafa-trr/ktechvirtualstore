@@ -12,17 +12,14 @@ namespace KTech.VirtualStore.Web.Infraestrutura
         private const string SessionKey = "Carrinho";
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
-            //Obter o carrinho da sessão
-
+        { 
             Carrinho carrinho = null;
 
             if(controllerContext.HttpContext.Session  != null)
             {
                 carrinho = (Carrinho)controllerContext.HttpContext.Session[SessionKey];
             }
-
-            // Crio o carrinho se não tenho a sessão
+                        
             if(carrinho == null)
             {
                 carrinho = new Carrinho();
@@ -32,8 +29,6 @@ namespace KTech.VirtualStore.Web.Infraestrutura
                     controllerContext.HttpContext.Session[SessionKey] = carrinho;
                 }
             }
-
-            // Retorno o carrinho
 
             return carrinho;
         }

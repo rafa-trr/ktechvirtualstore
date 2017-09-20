@@ -14,63 +14,17 @@ namespace KTech.VirtualStore.Web.Controllers
     {
         private ProdutosRepository _repositorio;
 
-        // GET: Carrinho
-        public RedirectToRouteResult Adicionar(Carrinho carrinho, int produtoId, string returnUrl)
-        {
-            _repositorio = new ProdutosRepository();
-
-            Produto produto = _repositorio.Produtos
-                .FirstOrDefault(p => p.ProdutoId == produtoId);
-
-            if (produto != null)
-            {
-                ObterCarrinho().AdicionarItem(produto, 1);
-            }
-
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        private Carrinho ObterCarrinho()
-        {
-            Carrinho carrinho = (Carrinho)Session["Carrinho"];
-
-            if (carrinho == null)
-            {
-                carrinho = new Carrinho();
-                Session["Carrinho"] = carrinho;
-            }
-
-            return carrinho;
-        }
-
-        public RedirectToRouteResult Remover(int produtoId, string returnUrl)
-        {
-            _repositorio = new ProdutosRepository();
-
-            Produto produto = _repositorio.Produtos
-                .FirstOrDefault(p => p.ProdutoId == produtoId);
-
-            if (produto != null)
-            {
-                ObterCarrinho().RemoverItem(produto);
-            }
-
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public ViewResult Index(string returnUrl)
+        public ViewResult Index(Carrinho carrinho, string returnUrl)
         {
             return View(new CarrinhoViewModel
             {
-                Carrinho = ObterCarrinho(),
+                Carrinho = carrinho,
                 ReturnUrl = returnUrl
             });
         }
 
-        public PartialViewResult Resumo()
+        public PartialViewResult Resumo(Carrinho carrinho)
         {
-            Carrinho carrinho = ObterCarrinho();
-
             return PartialView(carrinho);
         }
 
@@ -80,10 +34,8 @@ namespace KTech.VirtualStore.Web.Controllers
         }
 
         [HttpPost]
-        public ViewResult FecharPedido(Pedido pedido)
+        public ViewResult FecharPedido(Carrinho carrinho, Pedido pedido)
         {
-            Carrinho carrinho = ObterCarrinho();
-
             EmailConfiguracoes email = new EmailConfiguracoes
             {
                 EscreverArquivo = bool.Parse(ConfigurationManager.AppSettings["Email.EscreverArquivo"] ?? "false")
@@ -96,7 +48,7 @@ namespace KTech.VirtualStore.Web.Controllers
                 ModelState.AddModelError("", "Não foi possível concluir o pedido, seu carrinho está vazio!");
             }
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 emailPedido.ProcessarPedido(carrinho, pedido);
                 carrinho.LimparCarrinho();
@@ -106,6 +58,36 @@ namespace KTech.VirtualStore.Web.Controllers
             {
                 return View(pedido);
             }
+        }
+
+        public RedirectToRouteResult Adicionar(Carrinho carrinho, int produtoId, string returnUrl)
+        {
+            _repositorio = new ProdutosRepository();
+
+            Produto produto = _repositorio.Produtos
+                .FirstOrDefault(p => p.ProdutoId == produtoId);
+
+            if (produto != null)
+            {
+                carrinho.AdicionarItem(produto, 1);
+            }
+
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult Remover(Carrinho carrinho, int produtoId, string returnUrl)
+        {
+            _repositorio = new ProdutosRepository();
+
+            Produto produto = _repositorio.Produtos
+                .FirstOrDefault(p => p.ProdutoId == produtoId);
+
+            if (produto != null)
+            {
+                carrinho.RemoverItem(produto);
+            }
+
+            return RedirectToAction("Index", new { returnUrl });
         }
 
         public ViewResult PedidoConcluido()
