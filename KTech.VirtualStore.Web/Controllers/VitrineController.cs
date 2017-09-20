@@ -1,4 +1,5 @@
-﻿using KTech.VirtualStore.Domain.Repository;
+﻿using KTech.VirtualStore.Domain.Entities;
+using KTech.VirtualStore.Domain.Repository;
 using KTech.VirtualStore.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,20 @@ namespace KTech.VirtualStore.Web.Controllers
             };
 
             return View(model);
+        }
+
+        [Route("Vitrine/Produto/ObterImagem/{produtoId}")]
+        public FileContentResult ObterImagem(int produtoId)
+        {
+            _repositorio = new ProdutosRepository();
+            Produto prod = _repositorio.Produtos
+                .FirstOrDefault(p => p.ProdutoId == produtoId);
+
+            if (prod != null)
+            {
+                return File(prod.Imagem, prod.ImagemMimeType);
+            }
+            return null;
         }
     }
 }

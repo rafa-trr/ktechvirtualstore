@@ -11,6 +11,8 @@ namespace KTech.VirtualStore.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapMvcAttributeRoutes();
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             // /
@@ -46,10 +48,6 @@ namespace KTech.VirtualStore.Web
                 defaults: new { Controller = "Vitrine", Action = "ListaProdutos" },
                 constraints: new { pagina = @"\d+" }
                 );
-
-            
-
-            
 
             routes.MapRoute(
                 name: null,

@@ -17,16 +17,9 @@ namespace KTech.VirtualStore.Web.Areas.Administrativo
             context.MapRoute(
                 "Administrativo_default",
                 "Administrativo/{controller}/{action}/{id}",
-                new { controller="Produto", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Produto", action = "Index", id = UrlParameter.Optional },
                 new[] { "KTech.VirtualStore.Web.Areas.Administrativo.Controllers" }
             );
-
-
-            context.MapRoute(
-                name: "ObterImagem",
-                url: "Administrativo/Produto/ObterImagem/{produtoId}",
-                defaults: new { controller = "Produto", action = "ObterImagem", produtoId = UrlParameter.Optional },
-                namespaces: new[] { "KTech.VirtualStore.Web.Areas.Administrativo.Controllers" });
         }
     }
 }
