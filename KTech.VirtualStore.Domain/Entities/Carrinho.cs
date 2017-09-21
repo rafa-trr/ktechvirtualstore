@@ -25,7 +25,7 @@ namespace KTech.VirtualStore.Domain.Entities
             }
             else
             {
-                item.Quantidade += quantidade;
+                item.Quantidade = quantidade;
             }
         }
 

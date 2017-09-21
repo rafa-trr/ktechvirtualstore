@@ -1,24 +1,25 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Index</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
+<div>
 
-        Sou o controller @ViewBag.Controller
+    Sou o controller @ViewBag.Controller
 
-        <br />
+    <br />
 
-        Sou a action @ViewBag.Action
+    Sou a action @ViewBag.Action
 
-    </div>
-</body>
-</html>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            alert("teste");
+        });
+    </script>
+    }
