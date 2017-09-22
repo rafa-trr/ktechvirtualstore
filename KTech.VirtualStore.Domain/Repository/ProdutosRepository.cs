@@ -15,6 +15,11 @@ namespace KTech.VirtualStore.Domain.Repository
             get { return _context.Produtos; }
         }
 
+        public Produto ObterProduto(int  id)
+        {
+            return _context.Produtos.Single(p => p.ProdutoId == id);
+        }
+
         public void Salvar(Produto produto)
         {
             if (produto.ProdutoId == 0)
